@@ -883,7 +883,7 @@ void search(Node* start) {
                     if (blank_positions.at(i)->blankPos == 3)
                     {
                         Node* child = moveBlankDown(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
-                        if (child->currentPuzzle != curr->currentPuzzle) {
+                        if (child->currentPuzzle != curr->currentPuzzle) { //check that child has not been seen before
                             bool repeat = false;
                             for (int j = 0; j < explored.size(); j++) {
                                 if (child->currentPuzzle == explored.at(j)->currentPuzzle ) {
@@ -891,7 +891,7 @@ void search(Node* start) {
                                 }
                             }
 
-                            if (repeat == false) {
+                            if (repeat == false) { //if it has not been seen before, then push into children vector
                                 curr->children.push_back(child);
                             }
                             
@@ -1246,7 +1246,7 @@ void search(Node* start) {
             }
             cout<<endl;*/
 
-            for (int i = 0; i < curr->children.size(); i++) {
+            for (int i = 0; i < curr->children.size(); i++) { //check again that all children for curr has not been seen before
                 //cout << "TEST" << endl;
                 //printPuzzle(curr->children.at(i));
                 //cout<<endl;
@@ -1265,7 +1265,7 @@ void search(Node* start) {
                     }
                 }
 
-                if (repeat == false) {
+                if (repeat == false) { //if children has not been seen before than push to frontier
                     cout << "NEW STATE PUSHING TO FRONTIER: " << endl;
                     printPuzzle(curr->children.at(i));
                     frontier.push(curr->children.at(i));
@@ -1275,7 +1275,7 @@ void search(Node* start) {
                 }
             }
 
-            explored.push_back(curr);
+            explored.push_back(curr); //push current Node to explored, since we have finished expanded it
 
             cout << "REPEATED: " << repeated << endl;
 
