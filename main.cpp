@@ -753,6 +753,7 @@ void initializePuzzle(Node* start) {
     row2.push_back('7'); 
     row2.push_back('9');
 
+    //step 13 works depth of solution was 44
     //step 14 works depth of solution was 34
     //step 16 works depth of solution was 34
     //step 16 works depth of solution was 32
@@ -883,20 +884,48 @@ void search(Node* start) {
                     {
                         Node* child = moveBlankDown(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
                         if (child->currentPuzzle != curr->currentPuzzle) {
-                            curr->children.push_back(child);
+                            bool repeat = false;
+                            for (int j = 0; j < explored.size(); j++) {
+                                if (child->currentPuzzle == explored.at(j)->currentPuzzle ) {
+                                    repeat = true;
+                                }
+                            }
+
+                            if (repeat == false) {
+                                curr->children.push_back(child);
+                            }
+                            
                         }
                         
                     }
                     else if (blank_positions.at(i)->blankPos == 5) {
                         Node* child = moveBlankDown(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
                         if (child->currentPuzzle != curr->currentPuzzle) {
-                            curr->children.push_back(child);
+                            bool repeat = false;
+                            for (int j = 0; j < explored.size(); j++) {
+                                if (child->currentPuzzle == explored.at(j)->currentPuzzle ) {
+                                    repeat = true;
+                                }
+                            }
+
+                            if (repeat == false) {
+                                curr->children.push_back(child);
+                            }
                         }
                     }
                     else if (blank_positions.at(i)->blankPos == 7) {
                         Node* child = moveBlankDown(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
                         if (child->currentPuzzle != curr->currentPuzzle) {
-                            curr->children.push_back(child);
+                            bool repeat = false;
+                            for (int j = 0; j < explored.size(); j++) {
+                                if (child->currentPuzzle == explored.at(j)->currentPuzzle ) {
+                                    repeat = true;
+                                }
+                            }
+
+                            if (repeat == false) {
+                                curr->children.push_back(child);
+                            }
                         }
                     }    
                 }
@@ -906,13 +935,40 @@ void search(Node* start) {
                         Node* child2 = moveBlankLeft(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
                         Node* child3 = moveBlankRight(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
                         if (child1->currentPuzzle != curr->currentPuzzle) {
-                            curr->children.push_back(child1);
+                            bool repeat = false;
+                            for (int j = 0; j < explored.size(); j++) {
+                                if (child1->currentPuzzle == explored.at(j)->currentPuzzle ) {
+                                    repeat = true;
+                                }
+                            }
+
+                            if (repeat == false) {
+                                curr->children.push_back(child1);
+                            }
                         }
                         if (child2->currentPuzzle != curr->currentPuzzle) {
-                            curr->children.push_back(child2);
+                            bool repeat = false;
+                            for (int j = 0; j < explored.size(); j++) {
+                                if (child2->currentPuzzle == explored.at(j)->currentPuzzle ) {
+                                    repeat = true;
+                                }
+                            }
+
+                            if (repeat == false) {
+                                curr->children.push_back(child2);
+                            }
                         }
                         if (child3->currentPuzzle != curr->currentPuzzle) {
-                            curr->children.push_back(child3);
+                            bool repeat = false;
+                            for (int j = 0; j < explored.size(); j++) {
+                                if (child3->currentPuzzle == explored.at(j)->currentPuzzle ) {
+                                    repeat = true;
+                                }
+                            }
+
+                            if (repeat == false) {
+                                curr->children.push_back(child3);
+                            }
                         } 
                         
 
@@ -923,13 +979,40 @@ void search(Node* start) {
                         Node* child2 = moveBlankLeft(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
                         Node* child3 = moveBlankRight(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
                         if (child1->currentPuzzle != curr->currentPuzzle) {
-                            curr->children.push_back(child1);
+                            bool repeat = false;
+                            for (int j = 0; j < explored.size(); j++) {
+                                if (child1->currentPuzzle == explored.at(j)->currentPuzzle ) {
+                                    repeat = true;
+                                }
+                            }
+
+                            if (repeat == false) {
+                                curr->children.push_back(child1);
+                            }
                         }
                         if (child2->currentPuzzle != curr->currentPuzzle) {
-                            curr->children.push_back(child2);
+                            bool repeat = false;
+                            for (int j = 0; j < explored.size(); j++) {
+                                if (child2->currentPuzzle == explored.at(j)->currentPuzzle ) {
+                                    repeat = true;
+                                }
+                            }
+
+                            if (repeat == false) {
+                                curr->children.push_back(child2);
+                            }
                         }
                         if (child3->currentPuzzle != curr->currentPuzzle) {
-                            curr->children.push_back(child3);
+                            bool repeat = false;
+                            for (int j = 0; j < explored.size(); j++) {
+                                if (child3->currentPuzzle == explored.at(j)->currentPuzzle ) {
+                                    repeat = true;
+                                }
+                            }
+
+                            if (repeat == false) {
+                                curr->children.push_back(child3);
+                            }
                         } 
 
                     
@@ -939,13 +1022,40 @@ void search(Node* start) {
                         Node* child2 = moveBlankLeft(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
                         Node* child3 = moveBlankRight(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
                         if (child1->currentPuzzle != curr->currentPuzzle) {
-                            curr->children.push_back(child1);
+                            bool repeat = false;
+                            for (int j = 0; j < explored.size(); j++) {
+                                if (child1->currentPuzzle == explored.at(j)->currentPuzzle ) {
+                                    repeat = true;
+                                }
+                            }
+
+                            if (repeat == false) {
+                                curr->children.push_back(child1);
+                            }
                         }
                         if (child2->currentPuzzle != curr->currentPuzzle) {
-                            curr->children.push_back(child2);
+                            bool repeat = false;
+                            for (int j = 0; j < explored.size(); j++) {
+                                if (child2->currentPuzzle == explored.at(j)->currentPuzzle ) {
+                                    repeat = true;
+                                }
+                            }
+
+                            if (repeat == false) {
+                                curr->children.push_back(child2);
+                            }
                         }
                         if (child3->currentPuzzle != curr->currentPuzzle) {
-                            curr->children.push_back(child3);
+                            bool repeat = false;
+                            for (int j = 0; j < explored.size(); j++) {
+                                if (child3->currentPuzzle == explored.at(j)->currentPuzzle ) {
+                                    repeat = true;
+                                }
+                            }
+
+                            if (repeat == false) {
+                                curr->children.push_back(child3);
+                            }
                         } 
 
                     }
@@ -953,10 +1063,28 @@ void search(Node* start) {
                         Node* child1 = moveBlankLeft(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
                         Node* child2 = moveBlankRight(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
                         if (child1->currentPuzzle != curr->currentPuzzle) {
-                            curr->children.push_back(child1);
+                            bool repeat = false;
+                            for (int j = 0; j < explored.size(); j++) {
+                                if (child1->currentPuzzle == explored.at(j)->currentPuzzle ) {
+                                    repeat = true;
+                                }
+                            }
+
+                            if (repeat == false) {
+                                curr->children.push_back(child1);
+                            }
                         }
                         if (child2->currentPuzzle != curr->currentPuzzle) {
-                            curr->children.push_back(child2);
+                            bool repeat = false;
+                            for (int j = 0; j < explored.size(); j++) {
+                                if (child2->currentPuzzle == explored.at(j)->currentPuzzle ) {
+                                    repeat = true;
+                                }
+                            }
+
+                            if (repeat == false) {
+                                curr->children.push_back(child2);
+                            }
                         } 
 
                     
@@ -965,10 +1093,28 @@ void search(Node* start) {
                         Node* child1 = moveBlankLeft(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
                         Node* child2 = moveBlankRight(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
                         if (child1->currentPuzzle != curr->currentPuzzle) {
-                            curr->children.push_back(child1);
+                            bool repeat = false;
+                            for (int j = 0; j < explored.size(); j++) {
+                                if (child1->currentPuzzle == explored.at(j)->currentPuzzle ) {
+                                    repeat = true;
+                                }
+                            }
+
+                            if (repeat == false) {
+                                curr->children.push_back(child1);
+                            }
                         }
                         if (child2->currentPuzzle != curr->currentPuzzle) {
-                            curr->children.push_back(child2);
+                            bool repeat = false;
+                            for (int j = 0; j < explored.size(); j++) {
+                                if (child2->currentPuzzle == explored.at(j)->currentPuzzle ) {
+                                    repeat = true;
+                                }
+                            }
+
+                            if (repeat == false) {
+                                curr->children.push_back(child2);
+                            }
                         } 
 
                     
@@ -977,43 +1123,115 @@ void search(Node* start) {
                         Node* child1 = moveBlankLeft(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
                         Node* child2 = moveBlankRight(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
                         if (child1->currentPuzzle != curr->currentPuzzle) {
-                            curr->children.push_back(child1);
+                            bool repeat = false;
+                            for (int j = 0; j < explored.size(); j++) {
+                                if (child1->currentPuzzle == explored.at(j)->currentPuzzle ) {
+                                    repeat = true;
+                                }
+                            }
+
+                            if (repeat == false) {
+                                curr->children.push_back(child1);
+                            }
                         }
                         if (child2->currentPuzzle != curr->currentPuzzle) {
-                            curr->children.push_back(child2);
+                            bool repeat = false;
+                            for (int j = 0; j < explored.size(); j++) {
+                                if (child2->currentPuzzle == explored.at(j)->currentPuzzle ) {
+                                    repeat = true;
+                                }
+                            }
+
+                            if (repeat == false) {
+                                curr->children.push_back(child2);
+                            }
                         } 
                     }
                     else if (blank_positions.at(i)->blankPos == 6) {
                         Node* child1 = moveBlankLeft(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
                         Node* child2 = moveBlankRight(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
                         if (child1->currentPuzzle != curr->currentPuzzle) {
-                            curr->children.push_back(child1);
+                            bool repeat = false;
+                            for (int j = 0; j < explored.size(); j++) {
+                                if (child1->currentPuzzle == explored.at(j)->currentPuzzle ) {
+                                    repeat = true;
+                                }
+                            }
+
+                            if (repeat == false) {
+                                curr->children.push_back(child1);
+                            }
                         }
                         if (child2->currentPuzzle != curr->currentPuzzle) {
-                            curr->children.push_back(child2);
+                            bool repeat = false;
+                            for (int j = 0; j < explored.size(); j++) {
+                                if (child2->currentPuzzle == explored.at(j)->currentPuzzle ) {
+                                    repeat = true;
+                                }
+                            }
+
+                            if (repeat == false) {
+                                curr->children.push_back(child2);
+                            }
                         } 
                     }
                     else if (blank_positions.at(i)->blankPos == 8) {
                         Node* child1 = moveBlankLeft(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
                         Node* child2 = moveBlankRight(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
                         if (child1->currentPuzzle != curr->currentPuzzle) {
-                            curr->children.push_back(child1);
+                            bool repeat = false;
+                            for (int j = 0; j < explored.size(); j++) {
+                                if (child1->currentPuzzle == explored.at(j)->currentPuzzle ) {
+                                    repeat = true;
+                                }
+                            }
+
+                            if (repeat == false) {
+                                curr->children.push_back(child1);
+                            }
                         }
                         if (child2->currentPuzzle != curr->currentPuzzle) {
-                            curr->children.push_back(child2);
+                            bool repeat = false;
+                            for (int j = 0; j < explored.size(); j++) {
+                                if (child2->currentPuzzle == explored.at(j)->currentPuzzle ) {
+                                    repeat = true;
+                                }
+                            }
+
+                            if (repeat == false) {
+                                curr->children.push_back(child2);
+                            }
                         } 
 
                     }
                     else if (blank_positions.at(i)->blankPos == 0) {
                         Node* child = moveBlankRight(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
                         if (child->currentPuzzle != curr->currentPuzzle) {
-                            curr->children.push_back(child);
+                            bool repeat = false;
+                            for (int j = 0; j < explored.size(); j++) {
+                                if (child->currentPuzzle == explored.at(j)->currentPuzzle ) {
+                                    repeat = true;
+                                }
+                            }
+
+                            if (repeat == false) {
+                                curr->children.push_back(child);
+                            }
                         }
                     }
                     else if (blank_positions.at(i)->blankPos == 9) {
                         Node* child = moveBlankLeft(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
                         if (child->currentPuzzle != curr->currentPuzzle) {
-                            curr->children.push_back(child);
+                            bool repeat = false;
+                            for (int j = 0; j < explored.size(); j++) {
+                                if (child->currentPuzzle == explored.at(j)->currentPuzzle ) {
+                                    repeat = true;
+                                }
+                            }
+
+                            if (repeat == false) {
+                                curr->children.push_back(child);
+                            }
                         }
                     }
                 }
