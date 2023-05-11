@@ -22,25 +22,6 @@ Node::Node(vector<vector<char> > puzzle) {
 
 bool checkGoal(vector<vector<char> > puzzleToCheck) {
     vector<vector<char> > goalPuzzle;
-    
-    /*vector<int> row1;
-    row1.push_back(1);
-    row1.push_back(2);
-    row1.push_back(3);
-    
-    vector<int> row2;
-    row2.push_back(4);
-    row2.push_back(5);
-    row2.push_back(6);
-    
-    vector<int> row3;
-    row3.push_back(7);
-    row3.push_back(8);
-    row3.push_back(0);
-
-    goalPuzzle.push_back(row1);
-    goalPuzzle.push_back(row2);
-    goalPuzzle.push_back(row3);*/
 
     vector<char> row1;
     row1.push_back('x');
@@ -77,216 +58,6 @@ bool checkGoal(vector<vector<char> > puzzleToCheck) {
         return false;
     }
 }
-
-/*void topLeft(Node* curr) {
-    //* X X
-    //X X X
-    //X X X
-    //2 possible children: swap right, swap bottom
-    
-    Node *child1 = new Node(curr->currentPuzzle); //create new Node child
-    swap(child1->currentPuzzle.at(0).at(0), child1->currentPuzzle.at(0).at(1)); //first .at is for the row (top), second .at is for column
-    child1->depth = curr->depth + 1; //increment path cost by 1 and put into depth of child, every child is created by 1 move so 1 "depth"
-
-    Node *child2 = new Node(curr->currentPuzzle);
-    swap(child2->currentPuzzle.at(0).at(0), child2->currentPuzzle.at(1).at(0)); //swap the blank tile into posistion
-    child2->depth = curr->depth + 1;
-
-    //assigned child here because every time a swap happens, children are created
-    curr->child1 = child1; //assign newly create children nodes to children node arguments of current node
-    curr->child2 = child2; //in this case, we only have 2 possible children
-
-}
-
-void topMiddle(Node* curr) {
-    //X * X
-    //X X X
-    //X X X
-    //3 possible children: swap left, swap right, swap bottom
-    
-    Node *child1 = new Node(curr->currentPuzzle);
-    swap(child1->currentPuzzle.at(0).at(1), child1->currentPuzzle.at(0).at(0));
-    child1->depth = curr->depth + 1;
-
-    Node *child2 = new Node(curr->currentPuzzle);
-    swap(child2->currentPuzzle.at(0).at(1), child2->currentPuzzle.at(0).at(2));
-    child2->depth = curr->depth + 1;
-
-    Node *child3 = new Node(curr->currentPuzzle);
-    swap(child3->currentPuzzle.at(0).at(1), child3->currentPuzzle.at(1).at(1));
-    child3->depth = curr->depth + 1;
-
-    curr->child1 = child1;
-    curr->child2 = child2;
-    curr->child3 = child3;
-
-}
-
-void topRight(Node* curr) {
-    //X X *
-    //X X X
-    //X X X
-    //2 possible children: swap bottom, swap left
-    
-    Node *child1 = new Node(curr->currentPuzzle);
-    swap(child1->currentPuzzle.at(0).at(2), child1->currentPuzzle.at(1).at(2)); 
-    child1->depth = curr->depth + 1;
-
-    Node *child2 = new Node(curr->currentPuzzle);
-    swap(child2->currentPuzzle.at(0).at(2), child2->currentPuzzle.at(0).at(1)); 
-    child2->depth = curr->depth + 1;
-
-    curr->child1 = child1;
-    curr->child2 = child2;
-
-}
-
-void middleLeft(Node* curr) {
-    //X X X
-    //* X X
-    //X X X
-    //3 possible children: swap right, swap bottom, swap up
-    
-    Node *child1 = new Node(curr->currentPuzzle);
-    swap(child1->currentPuzzle.at(1).at(0), child1->currentPuzzle.at(1).at(1));
-    child1->depth = curr->depth + 1;
-
-    Node *child2 = new Node(curr->currentPuzzle);
-    swap(child2->currentPuzzle.at(1).at(0), child2->currentPuzzle.at(2).at(0));
-    child1->depth = curr->depth + 1;
-
-    Node *child3 = new Node(curr->currentPuzzle);
-    swap(child3->currentPuzzle.at(1).at(0), child3->currentPuzzle.at(0).at(0));
-    child3->depth = curr->depth + 1;
-    
-    curr->child1 = child1;
-    curr->child2 = child2;
-    curr->child3 = child3;
-
-
-}
-
-void middleMiddle(Node* curr) {
-    //X X X
-    //X * X
-    //X X X
-    //4 possible children: swap right, swap left, swap bottom, swap up 
-    Node *child1 = new Node (curr->currentPuzzle);
-    swap(child1->currentPuzzle.at(1).at(1), child1->currentPuzzle.at(1).at(2));
-    child1->depth = curr->depth + 1;
-
-    Node *child2 = new Node (curr->currentPuzzle);
-    swap(child2->currentPuzzle.at(1).at(1), child2->currentPuzzle.at(1).at(0));
-    child2->depth = curr->depth + 1;
-
-    Node *child3 = new Node (curr->currentPuzzle);
-    swap(child3->currentPuzzle.at(1).at(1), child3->currentPuzzle.at(2).at(1));
-    child3->depth = curr->depth + 1;
-
-    Node *child4 = new Node (curr->currentPuzzle);
-    swap(child4->currentPuzzle.at(1).at(1), child4->currentPuzzle.at(0).at(1));
-    child4->depth = curr->depth + 1;
-
-    curr->child1 = child1;
-    curr->child2 = child2;
-    curr->child3 = child3;
-    curr->child4 = child4;
-
-
-}
-
-void middleRight(Node* curr) {
-    //X X X
-    //X X *
-    //X X X
-    //3 possible children: swap left, swap bottom, swap up
-
-    Node *child1 = new Node(curr->currentPuzzle);
-    swap(child1->currentPuzzle.at(1).at(2), child1->currentPuzzle.at(1).at(1));
-    child1->depth = curr->depth + 1;
-
-    Node *child2 = new Node(curr->currentPuzzle);
-    swap(child2->currentPuzzle.at(1).at(2), child2->currentPuzzle.at(2).at(2));
-    child2->depth = curr->depth + 1;
-
-    
-    Node *child3 = new Node(curr->currentPuzzle);
-    swap(child3->currentPuzzle.at(1).at(2), child3->currentPuzzle.at(0).at(2));
-    child3->depth = curr->depth + 1;
-
-    curr->child1 = child1;
-    curr->child2 = child2;
-    curr->child3 = child3;
-
-}
-
-void bottomLeft(Node* curr) {
-    //X X X
-    //X X X
-    //* X X
-    //2 possible children: swap right, swap up
-
-    Node *child1 = new Node(curr->currentPuzzle);
-    swap(child1->currentPuzzle.at(2).at(0), child1->currentPuzzle.at(2).at(1));
-    child1->depth = curr->depth + 1;
-
-    Node *child2 = new Node(curr->currentPuzzle);
-    swap(child2->currentPuzzle.at(2).at(0), child2->currentPuzzle.at(1).at(0));
-    child2->depth = curr->depth + 1;
-
-    curr->child1 = child1;
-    curr->child2 = child2;
-
-
-}
-
-
-void bottomMiddle(Node* curr) {
-    //X X X
-    //X X X
-    //X * X
-    //3 possible children: swap right, swap left, swap up
-
-    Node *child1 = new Node(curr->currentPuzzle);
-    swap(child1->currentPuzzle.at(2).at(1), child1->currentPuzzle.at(2).at(2));
-    child1->depth = curr->depth + 1;
-
-    Node *child2 = new Node(curr->currentPuzzle);
-    swap(child2->currentPuzzle.at(2).at(1), child2->currentPuzzle.at(2).at(0));
-    child2->depth = curr->depth + 1;
-
-    Node *child3 = new Node(curr->currentPuzzle);
-    swap(child3->currentPuzzle.at(2).at(1), child3->currentPuzzle.at(1).at(1));
-    child3->depth = curr->depth + 1;
-
-    curr->child1 = child1;
-    curr->child2 = child2;
-    curr->child3 = child3;
-
-
-}
-
-void bottomRight(Node* curr) {
-    //X X X
-    //X X X
-    //X X *
-    //2 possible children: swap left, swap up
-
-    Node *child1 = new Node(curr->currentPuzzle);
-    swap(child1->currentPuzzle.at(2).at(2), child1->currentPuzzle.at(2).at(1));
-    child1->depth = curr->depth + 1;
-
-    Node *child2 = new Node(curr->currentPuzzle);
-    swap(child2->currentPuzzle.at(2).at(2), child2->currentPuzzle.at(1).at(2));
-    child2->depth = curr->depth + 1;
-
-    curr->child1 = child1;
-    curr->child2 = child2;
-
-    
-
-
-}*/
 
 void misplacedTileHeuristic(Node* curr) {
     int distance1;
@@ -449,15 +220,24 @@ void uniformCostHeuristic(Node* curr) {
     curr->h = 0;
 }
 
-Node* moveBlankDown(Node* curr, int rowIndex, int blankPos) {
+Node* moveBlankDown(Node* curr, int rowIndex, int blankPos, int algo) {
     Node *child = new Node (curr->currentPuzzle);
     bool repeat = false;
     //if(child->currentPuzzle.at(rowIndex+1).at(blankPos) != '*') { 
     swap(child->currentPuzzle.at(rowIndex).at(blankPos), child->currentPuzzle.at(rowIndex+1).at(blankPos));
     child->depth = curr->depth+1;
     //uniformCostHeuristic(child);
-    misplacedTileHeuristic(child);
+    //misplacedTileHeuristic(child);
     //manhattanDistance(child);
+    if (algo == 1) {
+        uniformCostHeuristic(child);
+    }
+    else if (algo == 2) {
+        manhattanDistance(child);
+    }
+    else if (algo == 3) {
+        misplacedTileHeuristic(child);
+    }
     return child;
     //frontier.push(child);
 
@@ -505,15 +285,24 @@ Node* moveBlankDown(Node* curr, int rowIndex, int blankPos) {
 
 }
 
-Node* moveBlankUp(Node* curr, int rowIndex, int blankPos) {
+Node* moveBlankUp(Node* curr, int rowIndex, int blankPos, int algo) {
     Node *child = new Node (curr->currentPuzzle);
     bool repeat = false;
     //if(child->currentPuzzle.at(rowIndex-1).at(blankPos) != '*') {
         swap(child->currentPuzzle.at(rowIndex).at(blankPos), child->currentPuzzle.at(rowIndex-1).at(blankPos));
         child->depth = curr->depth+1;
         //uniformCostHeuristic(child);
-        misplacedTileHeuristic(child);
+        //misplacedTileHeuristic(child);
         //manhattanDistance(child);
+        if (algo == 1) {
+            uniformCostHeuristic(child);
+        }
+        else if (algo == 2) {
+            manhattanDistance(child);
+        }
+        else if (algo == 3) {
+            misplacedTileHeuristic(child);
+        }
         return child;
         //frontier.push(child);
         
@@ -545,15 +334,24 @@ Node* moveBlankUp(Node* curr, int rowIndex, int blankPos) {
     //}
 }
 
-Node* moveBlankRight(Node* curr, int rowIndex, int blankPos) {
+Node* moveBlankRight(Node* curr, int rowIndex, int blankPos, int algo) {
     Node *child = new Node (curr->currentPuzzle);
     bool repeat = false;
     //if(child->currentPuzzle.at(rowIndex).at(blankPos+1) != '*') {
         swap(child->currentPuzzle.at(rowIndex).at(blankPos), child->currentPuzzle.at(rowIndex).at(blankPos+1));
         child->depth = curr->depth+1;
         //uniformCostHeuristic(child);
-        misplacedTileHeuristic(child);
+        //misplacedTileHeuristic(child);
         //manhattanDistance(child);
+        if (algo == 1) {
+            uniformCostHeuristic(child);
+        }
+        else if (algo == 2) {
+            manhattanDistance(child);
+        }
+        else if (algo == 3) {
+            misplacedTileHeuristic(child);
+        }
         return child;
         //frontier.push(child);
         
@@ -585,15 +383,24 @@ Node* moveBlankRight(Node* curr, int rowIndex, int blankPos) {
     //}
 }
 
-Node* moveBlankLeft(Node* curr, int rowIndex, int blankPos) {
+Node* moveBlankLeft(Node* curr, int rowIndex, int blankPos, int algo) {
     Node *child = new Node (curr->currentPuzzle);
     bool repeat = false;
     //if(child->currentPuzzle.at(rowIndex).at(blankPos-1) != '*'){
         swap(child->currentPuzzle.at(rowIndex).at(blankPos), child->currentPuzzle.at(rowIndex).at(blankPos-1));
         child->depth = curr->depth+1;
         //uniformCostHeuristic(child);
-        misplacedTileHeuristic(child);
+        //misplacedTileHeuristic(child);
         //manhattanDistance(child);
+        if (algo == 1) {
+            uniformCostHeuristic(child);
+        }
+        else if (algo == 2) {
+            manhattanDistance(child);
+        }
+        else if (algo == 3) {
+            misplacedTileHeuristic(child) ;
+        }
         return child;
         //frontier.push(child);
         
@@ -636,7 +443,7 @@ Position::Position(int blankPos, int rowIndex) {
     this->rowIndex = rowIndex;
 }
 
-void expand(Node* curr, vector<Position*> blank_positions) {
+/*void expand(Node* curr, vector<Position*> blank_positions) {
     for (int i = 0; i < blank_positions.size(); i++) {
         cout<<"("<<blank_positions.at(i)->rowIndex << "," << blank_positions.at(i)->blankPos<< ") ";
     }
@@ -667,41 +474,7 @@ void expand(Node* curr, vector<Position*> blank_positions) {
     }
     cout <<endl;
 
-
-    //blankPos possible positions
-    //0 1 2
-    //3 4 5
-    //6 7 8
-
-    /*if (blankPos == 0) { //if in position 0 then it is in the top left of the board
-        topLeft(curr);
-    }
-    else if (blankPos == 1) {
-        topMiddle(curr);
-    }
-    else if (blankPos == 2) {
-        topRight(curr);
-    }
-    else if (blankPos == 3) {
-        middleLeft(curr);
-    }
-    else if (blankPos == 4) {
-        middleMiddle(curr);
-    }
-    else if (blankPos == 5) {
-        middleRight(curr);
-    }
-    else if (blankPos == 6) {
-        bottomLeft(curr);
-    }
-    else if (blankPos == 7) {
-        bottomMiddle(curr);
-    }
-    else if (blankPos == 8) {
-        bottomRight(curr);
-    }*/
-
-}
+}*/
 
 void initializePuzzle(Node* start) {
 
@@ -801,7 +574,9 @@ void printPuzzle(Node* curr) {
     }
 }
 
-void search(Node* start) {
+void search(Node* start, int algo) {
+    int numNodesExpanded = 0;
+    int maxQueueSize = 0;
     /*while(!frontier.empty()) {
         frontier.pop();
     }
@@ -828,7 +603,16 @@ void search(Node* start) {
         frontier.pop();
         //numNodesExpanded++;
 
-        misplacedTileHeuristic(curr);
+        if (algo == 1) {
+            uniformCostHeuristic(curr);
+        }
+        else if (algo == 2) {
+            manhattanDistance(curr);
+        }
+        else if (algo == 3) {
+            misplacedTileHeuristic(curr);
+        }
+        
 
         vector<Position*> blank_positions;
 
@@ -846,6 +630,9 @@ void search(Node* start) {
         if(checkGoal(curr->currentPuzzle)) {
             printPuzzle(curr);
             cout<<"Goal state reached!" << endl;
+            cout<<"Total number of nodes expanded: " << numNodesExpanded << endl;
+            cout<<"Maximum amount of nodes in the queue at any one time: " << maxQueueSize << endl;
+            cout<<"Depth of goal node:" << curr->depth << endl;
             return;
         }
 
@@ -882,10 +669,10 @@ void search(Node* start) {
                 if (blank_positions.at(i)->rowIndex == 0) {
                     if (blank_positions.at(i)->blankPos == 3)
                     {
-                        Node* child = moveBlankDown(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
-                        if (child->currentPuzzle != curr->currentPuzzle) { //check that child has not been seen before
+                        Node* child = moveBlankDown(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos, algo);
+                        if (child->currentPuzzle != curr->currentPuzzle) { //check that child puzzle is not same as current puzzle
                             bool repeat = false;
-                            for (int j = 0; j < explored.size(); j++) {
+                            for (int j = 0; j < explored.size(); j++) { //check that child has not been seen before
                                 if (child->currentPuzzle == explored.at(j)->currentPuzzle ) {
                                     repeat = true;
                                 }
@@ -899,7 +686,7 @@ void search(Node* start) {
                         
                     }
                     else if (blank_positions.at(i)->blankPos == 5) {
-                        Node* child = moveBlankDown(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
+                        Node* child = moveBlankDown(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos, algo);
                         if (child->currentPuzzle != curr->currentPuzzle) {
                             bool repeat = false;
                             for (int j = 0; j < explored.size(); j++) {
@@ -914,7 +701,7 @@ void search(Node* start) {
                         }
                     }
                     else if (blank_positions.at(i)->blankPos == 7) {
-                        Node* child = moveBlankDown(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
+                        Node* child = moveBlankDown(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos, algo);
                         if (child->currentPuzzle != curr->currentPuzzle) {
                             bool repeat = false;
                             for (int j = 0; j < explored.size(); j++) {
@@ -931,9 +718,9 @@ void search(Node* start) {
                 }
                 else if (blank_positions.at(i)->rowIndex == 1) {
                     if (blank_positions.at(i)->blankPos == 3) {
-                        Node* child1 = moveBlankUp(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
-                        Node* child2 = moveBlankLeft(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
-                        Node* child3 = moveBlankRight(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
+                        Node* child1 = moveBlankUp(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos, algo);
+                        Node* child2 = moveBlankLeft(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos, algo);
+                        Node* child3 = moveBlankRight(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos, algo);
                         if (child1->currentPuzzle != curr->currentPuzzle) {
                             bool repeat = false;
                             for (int j = 0; j < explored.size(); j++) {
@@ -975,9 +762,9 @@ void search(Node* start) {
 
                     }
                     else if (blank_positions.at(i)->blankPos == 5) {
-                        Node* child1 = moveBlankUp(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
-                        Node* child2 = moveBlankLeft(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
-                        Node* child3 = moveBlankRight(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
+                        Node* child1 = moveBlankUp(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos, algo);
+                        Node* child2 = moveBlankLeft(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos, algo);
+                        Node* child3 = moveBlankRight(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos, algo);
                         if (child1->currentPuzzle != curr->currentPuzzle) {
                             bool repeat = false;
                             for (int j = 0; j < explored.size(); j++) {
@@ -1018,9 +805,9 @@ void search(Node* start) {
                     
                     }
                     else if (blank_positions.at(i)->blankPos == 7) {
-                        Node* child1 = moveBlankUp(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
-                        Node* child2 = moveBlankLeft(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
-                        Node* child3 = moveBlankRight(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
+                        Node* child1 = moveBlankUp(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos, algo);
+                        Node* child2 = moveBlankLeft(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos, algo);
+                        Node* child3 = moveBlankRight(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos, algo);
                         if (child1->currentPuzzle != curr->currentPuzzle) {
                             bool repeat = false;
                             for (int j = 0; j < explored.size(); j++) {
@@ -1060,8 +847,8 @@ void search(Node* start) {
 
                     }
                     else if (blank_positions.at(i)->blankPos == 1) {
-                        Node* child1 = moveBlankLeft(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
-                        Node* child2 = moveBlankRight(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
+                        Node* child1 = moveBlankLeft(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos, algo);
+                        Node* child2 = moveBlankRight(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos, algo);
                         if (child1->currentPuzzle != curr->currentPuzzle) {
                             bool repeat = false;
                             for (int j = 0; j < explored.size(); j++) {
@@ -1090,8 +877,8 @@ void search(Node* start) {
                     
                     }
                     else if (blank_positions.at(i)->blankPos == 2) {
-                        Node* child1 = moveBlankLeft(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
-                        Node* child2 = moveBlankRight(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
+                        Node* child1 = moveBlankLeft(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos, algo);
+                        Node* child2 = moveBlankRight(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos, algo);
                         if (child1->currentPuzzle != curr->currentPuzzle) {
                             bool repeat = false;
                             for (int j = 0; j < explored.size(); j++) {
@@ -1120,8 +907,8 @@ void search(Node* start) {
                     
                     }
                     else if (blank_positions.at(i)->blankPos == 4) {
-                        Node* child1 = moveBlankLeft(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
-                        Node* child2 = moveBlankRight(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
+                        Node* child1 = moveBlankLeft(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos, algo);
+                        Node* child2 = moveBlankRight(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos, algo);
                         if (child1->currentPuzzle != curr->currentPuzzle) {
                             bool repeat = false;
                             for (int j = 0; j < explored.size(); j++) {
@@ -1148,8 +935,8 @@ void search(Node* start) {
                         } 
                     }
                     else if (blank_positions.at(i)->blankPos == 6) {
-                        Node* child1 = moveBlankLeft(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
-                        Node* child2 = moveBlankRight(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
+                        Node* child1 = moveBlankLeft(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos, algo);
+                        Node* child2 = moveBlankRight(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos, algo);
                         if (child1->currentPuzzle != curr->currentPuzzle) {
                             bool repeat = false;
                             for (int j = 0; j < explored.size(); j++) {
@@ -1176,8 +963,8 @@ void search(Node* start) {
                         } 
                     }
                     else if (blank_positions.at(i)->blankPos == 8) {
-                        Node* child1 = moveBlankLeft(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
-                        Node* child2 = moveBlankRight(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
+                        Node* child1 = moveBlankLeft(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos, algo);
+                        Node* child2 = moveBlankRight(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos, algo);
                         if (child1->currentPuzzle != curr->currentPuzzle) {
                             bool repeat = false;
                             for (int j = 0; j < explored.size(); j++) {
@@ -1205,7 +992,7 @@ void search(Node* start) {
 
                     }
                     else if (blank_positions.at(i)->blankPos == 0) {
-                        Node* child = moveBlankRight(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
+                        Node* child = moveBlankRight(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos, algo);
                         if (child->currentPuzzle != curr->currentPuzzle) {
                             bool repeat = false;
                             for (int j = 0; j < explored.size(); j++) {
@@ -1220,7 +1007,7 @@ void search(Node* start) {
                         }
                     }
                     else if (blank_positions.at(i)->blankPos == 9) {
-                        Node* child = moveBlankLeft(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos);
+                        Node* child = moveBlankLeft(curr, blank_positions.at(i)->rowIndex, blank_positions.at(i)->blankPos, algo);
                         if (child->currentPuzzle != curr->currentPuzzle) {
                             bool repeat = false;
                             for (int j = 0; j < explored.size(); j++) {
@@ -1269,6 +1056,9 @@ void search(Node* start) {
                     cout << "NEW STATE PUSHING TO FRONTIER: " << endl;
                     printPuzzle(curr->children.at(i));
                     frontier.push(curr->children.at(i));
+                    if (maxQueueSize < frontier.size()) {
+                        maxQueueSize = frontier.size();
+                    }
                 }
                 else {
                     repeated++;
@@ -1276,13 +1066,14 @@ void search(Node* start) {
             }
 
             explored.push_back(curr); //push current Node to explored, since we have finished expanded it
+            numNodesExpanded++;
 
-            cout << "REPEATED: " << repeated << endl;
+            //cout << "REPEATED: " << repeated << endl;
 
             cout<<"Expanding this node..."<<endl;
 
-            cout <<"FRONTIER SIZE: " << frontier.size() << endl;
-            cout <<"EXPLORED SIZE: " << explored.size() << endl;
+            //cout <<"FRONTIER SIZE: " << frontier.size() << endl;
+            //cout <<"EXPLORED SIZE: " << explored.size() << endl;
             cout << endl;
 
             //uniformCostHeuristic(curr);
@@ -1294,12 +1085,17 @@ void search(Node* start) {
 }
 
 int main() {
+    int algo;
     Node* start = new Node();
 
     initializePuzzle(start);
+    cout << "9 Men In A Trench Solver" << endl;
+
+    cout <<"Press 1 for Uniform Cost Search, 2 for A* with Manhattan Distance Heuristic, or 3 for A* with Misplaced Tile Heuristic" << endl;
+    cin>>algo;
 
     printPuzzle(start);
-    search(start);
+    search(start, algo);
 
     return 0;
 }

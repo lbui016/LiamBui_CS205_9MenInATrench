@@ -67,12 +67,12 @@ void bottomLeft(Node *curr);
 void bottomMiddle(Node *curr);
 void bottomRight(Node *curr);
 
-Node* moveBlankUp(Node *curr, int rowIndex, int blankIndex);
-Node* moveBlankDown(Node *curr, int rowIndex, int blankIndex);
-Node* moveBlankLeft(Node *curr, int rowIndex, int blankIndex);
-Node* moveBlankRight(Node *curr, int rowIndex, int blankIndex);
+Node* moveBlankUp(Node *curr, int rowIndex, int blankIndex, int algo);
+Node* moveBlankDown(Node *curr, int rowIndex, int blankIndex, int algo);
+Node* moveBlankLeft(Node *curr, int rowIndex, int blankIndex, int algo);
+Node* moveBlankRight(Node *curr, int rowIndex, int blankIndex, int algo);
 
-void expand(Node* curr); //performs the operators to expand the node
+//void expand(Node* curr); //performs the operators to expand the node
 bool checkGoal (vector<vector<char> > puzzleToCheck); //checks if current puzzle board is the goal state
 void uniformCostHeuristic(Node* child);
 void calcHeuChild1(Node* curr, int selectAlgo); //calculate heuristic for child, one for each possible child
