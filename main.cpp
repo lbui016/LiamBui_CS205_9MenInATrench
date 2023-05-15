@@ -478,7 +478,7 @@ Position::Position(int blankPos, int rowIndex) {
 
 void initializePuzzle(Node* start) {
 
-    /*vector<char> row1;
+    vector<char> row1;
     row1.push_back('x');
     row1.push_back('x');
     row1.push_back('x');
@@ -500,9 +500,9 @@ void initializePuzzle(Node* start) {
     row2.push_back('7'); 
     row2.push_back('8'); 
     row2.push_back('9'); 
-    row2.push_back('1');*/
+    row2.push_back('1');
 
-    vector<char> row1;
+    /*vector<char> row1;
     row1.push_back('x');
     row1.push_back('x');
     row1.push_back('x');
@@ -524,7 +524,7 @@ void initializePuzzle(Node* start) {
     row2.push_back('*'); 
     row2.push_back('*'); 
     row2.push_back('7'); 
-    row2.push_back('9');
+    row2.push_back('9');*/
 
     //step 13 works depth of solution was 44
     //step 14 works depth of solution was 34
@@ -1071,6 +1071,8 @@ void search(Node* start, int algo) {
             //cout << "REPEATED: " << repeated << endl;
 
             cout<<"Expanding this node..."<<endl;
+            cout<<"Total number of nodes expanded: " << numNodesExpanded << endl;
+            cout<<"Maximum amount of nodes in the queue at any one time: " << maxQueueSize << endl;
 
             //cout <<"FRONTIER SIZE: " << frontier.size() << endl;
             //cout <<"EXPLORED SIZE: " << explored.size() << endl;
@@ -1080,6 +1082,7 @@ void search(Node* start, int algo) {
 
             test++;
         }
+        
     }
 
 }
